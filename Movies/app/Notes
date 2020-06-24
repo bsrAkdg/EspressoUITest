@@ -5,4 +5,11 @@
         - Transition animations scale (off)
         - Animation duration scale (off)
 
-*
+* You can define an ActivityScenario two different ways :
+
+    First way for global :
+          @get:Rule
+          val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    Second way for each test :
+         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
