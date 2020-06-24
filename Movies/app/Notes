@@ -13,3 +13,12 @@
 
     Second way for each test :
          val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+* You can create test groups with using Suites, create a new file and add the below code, then run :
+    @RunWith(Suite::class)
+    @Suite.SuiteClasses(
+        MainActivityTest::class,
+        SecondaryActivityTest::class
+    )
+    class ActivityTestSuite // Run this class for tests run the same time
+
