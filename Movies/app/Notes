@@ -1,0 +1,8 @@
+
+* Before run UI Tests we should set off some things in developer options :
+    Settings -> System -> Developer Options -> Drawing ->
+        - Window animation scale (off)
+        - Transition animations scale (off)
+        - Animation duration scale (off)
+
+*
