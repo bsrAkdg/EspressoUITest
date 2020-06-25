@@ -9,7 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bsrakdg.movies.R
-import org.hamcrest.core.IsNot.not
+import com.bsrakdg.movies.ui.DialogActivity.Companion.buildToastMessage
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -28,6 +28,8 @@ class DialogActivityTest {
         onView(withText(R.string.text_enter_name)).check(matches(isDisplayed())) // is dialog text displayed?
 
         onView(withText(R.string.text_ok)).perform(click())
+
+       // make sure dialog is still visible (can't click ok without entering a name)
         onView(withText(R.string.text_enter_name)).check(matches(isDisplayed()))
 
         // enter some input
@@ -40,5 +42,10 @@ class DialogActivityTest {
 
         // confirm name is set to TextView in activity
         onView(withId(R.id.text_name)).check(matches(withText(expectedName)))
+
+        // test if toast is displayed
+        onView(withText(buildToastMessage(expectedName)))
+            .inRoot(ToastMatcher())
+            .check(matches(isDisplayed()))
     }
 }
