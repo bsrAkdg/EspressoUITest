@@ -58,7 +58,7 @@ dependencies {
     implementation "androidx.test.espresso:espresso-idling-resource:$androidx_test_espresso"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$androidx_test_espresso"
 
-    // Mockk.io
+    // Mock.io
     def mockk_version = "1.9.3"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
 
@@ -73,8 +73,7 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     implementation "androidx.fragment:fragment:$fragment_version"
 
-
-    //glide
+    // Glide
     def glide_version = "4.9.0"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
@@ -86,4 +85,9 @@ dependencies {
     // Card View
     def cardview_version = "1.0.0"
     implementation "androidx.cardview:cardview:$cardview_version"
+
+    // Material dialogs
+    def material_dialogs_version = "3.1.1"
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
+    implementation "com.afollestad.material-dialogs:input:$material_dialogs_version"
 }
