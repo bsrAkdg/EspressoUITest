@@ -33,3 +33,8 @@
     - Select created new configuration then run it
 
     - Look at Firebase Test Lab in firebase console
+
+*  There are couple different matchers that you can use when you're building a custom test :
+    - Matcher
+    - Bounded Matcher
+    - Type Safe Matcher
