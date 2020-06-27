@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bsrakdg.movies.R
 import com.bsrakdg.movies.data.Movie
+import com.bsrakdg.movies.util.EspressoIdlingResource
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.layout_movie_list_item.view.*
 
@@ -53,7 +54,11 @@ class MoviesListAdapter(private val interaction: Interaction? = null) :
     }
 
     fun submitList(list: List<Movie>) {
-        differ.submitList(list)
+        EspressoIdlingResource.increment()
+        val dataCommitCallback = Runnable {
+            EspressoIdlingResource.decrement()
+        }
+        differ.submitList(list, dataCommitCallback)
     }
 
     class MovieViewHolder
@@ -71,9 +76,9 @@ class MoviesListAdapter(private val interaction: Interaction? = null) :
                 .load(item.image)
                 .into(movie_image)
             item.star_actors?.let {
-                for (index in 0 until it.size) {
+                for(index in 0 until it.size){
                     var appendValue: String = it[index]
-                    if (index < (it.size - 1)) {
+                    if(index < (it.size - 1)){
                         appendValue += ", "
                     }
                     movie_star_actors.append(appendValue)
