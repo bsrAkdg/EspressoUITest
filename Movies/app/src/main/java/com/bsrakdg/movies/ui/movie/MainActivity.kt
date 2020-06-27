@@ -3,12 +3,23 @@ package com.bsrakdg.movies.ui.movie
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bsrakdg.movies.R
+import com.bsrakdg.movies.data.source.MoviesDataSource
+import com.bsrakdg.movies.data.source.MoviesRemoteDataSource
 import com.bsrakdg.movies.factory.MovieFragmentFactory
+import com.bumptech.glide.request.RequestOptions
 
 class MainActivity : AppCompatActivity() {
 
+    // dependencies (typically would be injected with dagger)
+    private lateinit var requestOptions: RequestOptions
+    private lateinit var moviesDataSource: MoviesDataSource
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportFragmentManager.fragmentFactory = MovieFragmentFactory()
+        initDependencies()
+        supportFragmentManager.fragmentFactory = MovieFragmentFactory(
+            requestOptions,
+            moviesDataSource
+        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -25,4 +36,17 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
+    private fun initDependencies() {
+
+        // glide
+        requestOptions = RequestOptions
+            .placeholderOf(R.drawable.default_image)
+            .error(R.drawable.default_image)
+
+        // Data Source
+        moviesDataSource = MoviesRemoteDataSource()
+    }
+
 }
+

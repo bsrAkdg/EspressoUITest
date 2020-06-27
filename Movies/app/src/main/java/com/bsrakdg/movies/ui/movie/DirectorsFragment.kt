@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bsrakdg.movies.R
 import kotlinx.android.synthetic.main.fragment_directors.*
 
-class DirectorsFragment : Fragment() {
+class DirectorsFragment : Fragment(){
 
     private val directors: ArrayList<String> = ArrayList()
 
@@ -34,14 +34,14 @@ class DirectorsFragment : Fragment() {
         setDirectors()
     }
 
-    private fun setDirectors() {
+    private fun setDirectors(){
         directors_text.text = stringBuilderForDirectors(directors)
     }
 
-    companion object {
-        fun stringBuilderForDirectors(directors: ArrayList<String>): String {
+    companion object{
+        fun stringBuilderForDirectors(directors: ArrayList<String>): String{
             val sb = StringBuilder()
-            for (director in directors) {
+            for(director in directors){
                 sb.append(director + "\n")
             }
             return sb.toString()

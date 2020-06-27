@@ -23,7 +23,7 @@ class StarActorsFragmentTest {
             "Rosario Dawson",
             "Christopher Walken"
         )
-        val fragmentFactory = MovieFragmentFactory()
+        val fragmentFactory = MovieFragmentFactory(null, null)
         val bundle = Bundle()
         bundle.putStringArrayList("args_actors", actors)
 
