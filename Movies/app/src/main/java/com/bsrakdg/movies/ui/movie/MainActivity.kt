@@ -11,8 +11,8 @@ import com.bumptech.glide.request.RequestOptions
 class MainActivity : AppCompatActivity() {
 
     // dependencies (typically would be injected with dagger)
-    private lateinit var requestOptions: RequestOptions
-    private lateinit var moviesDataSource: MoviesDataSource
+    lateinit var requestOptions: RequestOptions
+    lateinit var moviesDataSource: MoviesDataSource
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initDependencies()
@@ -26,27 +26,25 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-    private fun init() {
-        if (supportFragmentManager.fragments.size == 0) {
-            val movieId = 1
-            val bundle = Bundle()
-            bundle.putInt("movie_id", movieId)
+    private fun init(){
+        if(supportFragmentManager.fragments.size == 0){
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MovieDetailFragment::class.java, bundle)
+                .replace(R.id.container, MovieListFragment::class.java, null)
                 .commit()
         }
     }
 
-    private fun initDependencies() {
-
-        // glide
-        requestOptions = RequestOptions
-            .placeholderOf(R.drawable.default_image)
-            .error(R.drawable.default_image)
-
-        // Data Source
-        moviesDataSource = MoviesRemoteDataSource()
+    private fun initDependencies(){
+        if(!::requestOptions.isInitialized){
+            // glide
+            requestOptions = RequestOptions
+                .placeholderOf(R.drawable.default_image)
+                .error(R.drawable.default_image)
+        }
+        if(!::moviesDataSource.isInitialized){
+            // Data Source
+            moviesDataSource = MoviesRemoteDataSource()
+        }
     }
-
 }
 

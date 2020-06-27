@@ -9,7 +9,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bsrakdg.movies.R
 import com.bsrakdg.movies.data.Movie
-import com.bsrakdg.movies.data.source.MoviesDataSource
 import com.bsrakdg.movies.data.source.MoviesRemoteDataSource
 import com.bsrakdg.movies.factory.MovieFragmentFactory
 import com.bumptech.glide.request.RequestOptions
@@ -52,7 +51,7 @@ class MovieDetailFragmentTest {
         )
 
         val moviesDataSource = mockk<MoviesRemoteDataSource>()
-        every {
+        every { // like when then return
             moviesDataSource.getMovie(movieId)
         } returns movie
 
