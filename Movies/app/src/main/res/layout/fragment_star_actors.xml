@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="10dp"
-            android:background="@color/grey4"></View>
+            android:background="@color/grey4" />
 
         <TextView
             android:id="@+id/star_actors_text"
